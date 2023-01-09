@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screens.DistanceFragment"
+        android:background="@color/light_brown">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:adjustViewBounds="true"
+                android:src="@drawable/rader_image"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/distance_home_image"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:padding="16dp"
+                android:src="@drawable/ic_icon_home" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="How far are you willing to travel?"
+                android:paddingTop="36dp"
+                android:paddingStart="48dp"
+                android:paddingEnd="48dp"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                android:textStyle="bold"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/destination"
+                android:paddingEnd="4dp"
+                android:paddingStart="0dp"
+                android:layout_gravity="end" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stepSize="1"
+                android:layout_marginTop="96dp"
+                android:layout_marginBottom="96dp"
+                android:value="1"
+                android:valueFrom="1"
+                android:valueTo="10"
+                app:trackColorActive="@color/orange"
+                app:trackColorInactive="@color/dark_gray"
+                app:thumbColor="@color/orange"
+                app:thumbStrokeColor="@color/orange"
+                app:haloColor="@color/orange"
+                app:tickVisible="false"
+                android:rotation="315"
+                app:labelBehavior="gone"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/user"
+                android:paddingStart="16dp"
+                android:paddingEnd="0dp"/>
+
+            <TextView
+                android:id="@+id/distance_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1 KM"
+                android:textColor="@color/dark_gray"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/distance_next_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/icon_next" />
+        </RelativeLayout>
+
+    </FrameLayout>
+</layout>

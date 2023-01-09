@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!-- "android:color" in this first ripple block here determines the color that
+     would show when after we click the button...Here, we change the color
+     to a lighter green i.e green2 -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@color/light_green"
+    tools:targetApi="lollipop">
+
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/green"/>
+            <corners android:radius="50dp"/>
+        </shape>
+    </item>
+
+    <!-- It is this item that determines the color of the top half of the
+         button and the bottom half of the button
+         The top half color is determined by "startColor"
+         The bottom half color is determined by "endColor"-->
+
+    <!-- NOTE: We should only add a second "item" if we want to change the initial
+               color of the "Object" that we want a ripple to occur (nss)  -->
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <gradient android:angle="360"
+                android:startColor="@color/green"
+                android:endColor="@color/green"
+                android:type="linear"/>
+            <corners android:radius="45dp"/>
+        </shape>
+    </item>
+
+</ripple>

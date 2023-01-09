@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RAYDAR</string>
+
+    <string name="button_clicked">Clicked</string>
+    <string name="button_not_clicked">Not Clicked</string>
+
+    <string name="default_state">Default State </string>
+    <string name="first_increment">First Increment</string>
+    <string name="second_increment">Second Increment</string>
+    <string name="third_increment">Third Increment</string>
+
+    <string name="enable_now">Turn on</string>
+    <string name="required_for_this_app">Turn on location to enable RAYDAR suggest places</string>
+    <string name="location">RAYDAR</string>
+</resources>

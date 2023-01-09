@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="ukponahiunsijeffery.example.raydar.screens.SplashScreenFragment"
+        android:label="SplashScreenFragment"
+        tools:layout="@layout/fragment_splash_screen">
+        <action
+            android:id="@+id/action_splashScreenFragment_to_welcomeFragment2"
+            app:destination="@id/welcomeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityTypeFragment"
+        android:name="ukponahiunsijeffery.example.raydar.screens.ActivityTypeFragment"
+        android:label="ActivityTypeFragment"
+        tools:layout="@layout/fragment_activity_type">
+        <action
+            android:id="@+id/action_activityTypeFragment_to_distanceFragment"
+            app:destination="@id/distanceFragment" />
+
+<!--    We use a "popUpTo" and "popUpToInclusive" because we want to only go the Welcome screen when we click the
+        home image
+
+        If we don't do this, when we press the home image and we get to the WelcomeFragment, when we are at the
+        WelcomeFragment and we click back again, we would go to the previous fragment in the back stack instead of
+        us remaining there in the WelcomeFragment. To avoid this we ensure that when we are at the WelcomeFragment
+        and we come from our ActivityType we would always remain in the WelcomeFragment
+
+        This kind of cancels all fragments in the backstack making us only able to go back to the fragment before
+        our WelcomeFragment i.e "SplashScreenFragment". Now to avoid us going back to the SplashScreenFragment when
+        we click the back button when we are in our "WelcomeFragment", we override the "handleOnBackPressed" method
+        in our "WelcomeFragment". There we write a code that makes us exit our App whenever we press the back key
+        when we are at the "WelcomeFragment" -->
+        <action
+            android:id="@+id/action_activityTypeFragment_to_welcomeFragment2"
+            app:destination="@id/welcomeFragment2"
+            app:popUpTo="@id/welcomeFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeFragment2"
+        android:name="ukponahiunsijeffery.example.raydar.screens.WelcomeFragment"
+        android:label="WelcomeFragment"
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment2_to_activityTypeFragment"
+            app:destination="@id/activityTypeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/distanceFragment"
+        android:name="ukponahiunsijeffery.example.raydar.screens.DistanceFragment"
+        android:label="DistanceFragment"
+        tools:layout="@layout/fragment_distance">
+
+        <action
+            android:id="@+id/action_distanceFragment_to_priceFragment"
+            app:destination="@id/priceFragment" />
+
+
+<!--    We use a "popUpTo" and "popUpToInclusive" because we want to only go the Welcome screen when we click the
+        home image
+
+        If we don't do this, when we press the home image and we get to the WelcomeFragment, when we are at the
+        WelcomeFragment and we click back again, we would go to the previous fragment in the back stack instead of
+        us remaining there in the WelcomeFragment. To avoid this we ensure that when we are at the WelcomeFragment
+        and we come from our DistanceFragment we would always remain in the WelcomeFragment -->
+        <action
+            android:id="@+id/action_distanceFragment_to_welcomeFragment2"
+            app:destination="@id/welcomeFragment2"
+            app:popUpTo="@id/welcomeFragment2"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_distanceFragment_to_activityTypeFragment"
+            app:destination="@id/activityTypeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ratingFragment"
+        android:name="ukponahiunsijeffery.example.raydar.screens.RatingFragment"
+        android:label="RatingFragment"
+        tools:layout="@layout/fragment_rating">
+        <action
+            android:id="@+id/action_ratingFragment_to_mapsFragment2"
+            app:destination="@id/mapsFragment2" />
+
+<!--    We use a "popUpTo" and "popUpToInclusive" because we want to only go the Welcome screen when we click the
+        home image
+
+        If we don't do this, when we press the home image and we get to the WelcomeFragment, when we are at the
+        WelcomeFragment and we click back again, we would go to the previous fragment in the back stack instead of
+        us remaining there in the WelcomeFragment. To avoid this we ensure that when we are at the WelcomeFragment
+        and we come from our RatingFragment we would always remain in the WelcomeFragment -->
+        <action
+            android:id="@+id/action_ratingFragment_to_welcomeFragment2"
+            app:destination="@id/welcomeFragment2"
+            app:popUpTo="@id/welcomeFragment2"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_ratingFragment_to_priceFragment"
+            app:destination="@id/priceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment2"
+        android:name="ukponahiunsijeffery.example.raydar.screens.MapsFragment"
+        android:label="MapsFragment"
+        tools:layout="@layout/fragment_maps">
+
+<!--    We use a "popUpTo" and "popUpToInclusive" because we want to only go the Welcome screen when we click the
+        home image
+
+        If we don't do this, when we press the home image and we get to the WelcomeFragment, when we are at the
+        WelcomeFragment and we click back again, we would go to the previous fragment in the back stack instead of
+        us remaining there in the WelcomeFragment. To avoid this we ensure that when we are at the WelcomeFragment
+        and we come from our MapsFragment we would always remain in the WelcomeFragment -->
+        <action
+            android:id="@+id/action_mapsFragment2_to_welcomeFragment2"
+            app:destination="@id/welcomeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/priceFragment"
+        android:name="ukponahiunsijeffery.example.raydar.screens.PriceFragment"
+        android:label="PriceFragment"
+        tools:layout="@layout/fragment_price">
+        <action
+            android:id="@+id/action_priceFragment_to_ratingFragment"
+            app:destination="@id/ratingFragment" />
+        <action
+            android:id="@+id/action_priceFragment_to_distanceFragment"
+            app:destination="@id/distanceFragment" />
+
+<!--    We use a "popUpTo" and "popUpToInclusive" because we want to only go the Welcome screen when we click the
+        home image
+
+        If we don't do this, when we press the home image and we get to the WelcomeFragment, when we are at the
+        WelcomeFragment and we click back again, we would go to the previous fragment in the back stack instead of
+        us remaining there in the WelcomeFragment. To avoid this we ensure that when we are at the WelcomeFragment
+        and we come from our PriceFragment we would always remain in the WelcomeFragment -->
+        <action
+            android:id="@+id/action_priceFragment_to_welcomeFragment2"
+            app:destination="@id/welcomeFragment2"
+            app:popUpTo="@id/welcomeFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

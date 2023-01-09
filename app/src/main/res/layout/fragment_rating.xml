@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screens.RatingFragment"
+        android:orientation="vertical"
+        android:background="@color/light_brown">
+
+        <ImageView
+            android:id="@+id/rating_home_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:padding="16dp"
+            android:src="@drawable/ic_icon_home" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="What is the minimum rating you would like for the activity?"
+            android:paddingTop="36dp"
+            android:gravity="center"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:textColor="@color/dark_gray"
+            android:textStyle="bold"
+            android:textSize="24sp" />
+
+        <RatingBar
+            android:id="@+id/rating_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:rating="0.0"
+            android:stepSize="0.1"
+            android:progressTint="@color/golden_yellow"
+            android:secondaryProgressTint="@color/golden_yellow"
+            android:progressBackgroundTint="@color/lightest_gold"
+            android:layout_marginTop="64dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="OR"
+            android:textColor="@color/dark_gray"
+            android:layout_marginTop="22dp"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/i_dont_mind_rating_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="22dp"
+            android:backgroundTint="@color/i_dont_mind_button_background_color"
+            android:text="I don't mind"
+            android:textColor="@color/i_dont_mind_button_text_color" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/view_results_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="View Results" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

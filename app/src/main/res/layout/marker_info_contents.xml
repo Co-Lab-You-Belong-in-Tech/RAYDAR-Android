@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="200dp"
+    android:layout_height="120dp">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:paddingStart="4dp"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="Opp.mobile filling station, Upper Mission Extension, Benin City" />
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/rating"
+            android:textSize="13sp"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:paddingStart="4dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray"
+            tools:text="3.7" />
+
+        <RatingBar
+            android:id="@+id/marker_info_window_rating_bar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:stepSize="0.1"
+            android:numStars="5"
+            android:progressTint="@color/golden_yellow"
+            android:secondaryProgressTint="@color/golden_yellow"
+            android:progressBackgroundTint="@color/light_yellow"
+            android:max="5" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_location_icon" />
+
+        <TextView
+            android:id="@+id/vicinity"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:textSize="13sp"
+            tools:text="Opp.mobile filling station, Upper Mission Extension, Benin City Opp.mobile filling station, "
+            android:textColor="@color/gray"/>
+
+    </LinearLayout>
+
+</LinearLayout>
