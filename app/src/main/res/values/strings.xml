@@ -12,4 +12,7 @@
     <string name="enable_now">Turn on</string>
     <string name="required_for_this_app">Turn on location to enable RAYDAR suggest places</string>
     <string name="location">RAYDAR</string>
+
+    <string name="loading_error_message">Couldn’t display suggestions\nCheck internet Connection</string>
+
 </resources>

@@ -1,7 +1,11 @@
 package ukponahiunsijeffery.example.raydar.screens
 
 import android.annotation.SuppressLint
+import android.graphics.ImageDecoder
+import android.graphics.drawable.AnimatedImageDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.coroutines.CoroutineScope
@@ -48,6 +53,14 @@ class MapsFragment : Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,onBackPressedCallback)
 
+        val source: ImageDecoder.Source = ImageDecoder.createSource(
+            resources, R.drawable.loading_gif
+        )
+
+        val drawable: Drawable = ImageDecoder.decodeDrawable(source)
+        binding.loadingGif.setImageDrawable(drawable)
+        (drawable as? AnimatedImageDrawable)?.start()
+
 
         val ratingGeneralArrayList = requireArguments().getStringArrayList("RATING_GENERAL_ARRAYLIST")
         val type = ratingGeneralArrayList?.get(0).toString()
@@ -58,19 +71,46 @@ class MapsFragment : Fragment() {
         val passedRating = ratingGeneralArrayList?.get(5).toString()
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.main_map_fragment) as? SupportMapFragment
+        mapFragment?.view?.visibility = View.GONE
+        binding.internetError.visibility = View.GONE
+        binding.gifLayout.visibility = View.VISIBLE
 
-        mapFragment?.getMapAsync { googleMap ->
-            googleMap.isMyLocationEnabled = true
-            coroutineScope.launch {
 
-                var nearbyPlaceArrayList = getArrayListPlaces(type, dist, passedLat, passedLong,
-                    passedPrice, passedRating)
+        coroutineScope.launch {
+            var nearbyPlaceArrayList = getArrayListPlaces(type, dist, passedLat, passedLong,
+                passedPrice, passedRating)
 
-                if(nearbyPlaceArrayList.size == 0){
-                    Toast.makeText(context, "No place available for your selected preference", Toast.LENGTH_SHORT).show()
+            if (nearbyPlaceArrayList.size == 1 && nearbyPlaceArrayList.get(0).vicinity == "dbdbdb"){
+
+                (drawable as? AnimatedImageDrawable)?.stop()
+                binding.gifLayout.visibility = View.GONE
+                mapFragment?.view?.visibility = View.GONE
+                binding.internetError.visibility = View.VISIBLE
+            }
+
+            else if(nearbyPlaceArrayList.size == 0){
+
+                (drawable as? AnimatedImageDrawable)?.stop()
+                binding.gifLayout.visibility = View.GONE
+                binding.internetError.visibility = View.GONE
+                mapFragment?.view?.visibility = View.VISIBLE
+
+                mapFragment?.getMapAsync {
+                    Toast.makeText(context, "No place available for your selected preference", Toast.LENGTH_LONG).show()
                 }
 
-                else{
+            }
+
+
+            else{
+                mapFragment?.getMapAsync { googleMap ->
+                    googleMap.isMyLocationEnabled = true
+
+                    (drawable as? AnimatedImageDrawable)?.stop()
+                    binding.gifLayout.visibility = View.GONE
+                    binding.internetError.visibility = View.GONE
+                    mapFragment.view?.visibility = View.VISIBLE
+
                     googleMap.setOnMapLoadedCallback {
                         val bounds = LatLngBounds.builder()
                         nearbyPlaceArrayList.forEach { bounds.include(it.latLng) }
@@ -80,11 +120,8 @@ class MapsFragment : Fragment() {
                     addMarkers(nearbyPlaceArrayList, googleMap)
                     googleMap.setInfoWindowAdapter(MarkerInfoWindowAdapter(requireContext()))
                 }
-
             }
-
         }
-
 
         return binding.root
     }
@@ -115,33 +152,70 @@ class MapsFragment : Fragment() {
 
         if (selectedPriceInt == 0){
 
-            var getPropertiesDeferred = PlacesApi.retrofitService.getPropertiesOpenNow(
-                "$passedLatitude, $passedLongitude",
-                distance.toInt(),
-                activityType,
-                "opennow",
-                BuildConfig.GOOGLE_MAPS_API_KEY)
+            try {
+                var getPropertiesDeferred = PlacesApi.retrofitService.getPropertiesOpenNow(
+                    "$passedLatitude, $passedLongitude",
+                    distance.toInt(),
+                    activityType,
+                    "opennow",
+                    BuildConfig.GOOGLE_MAPS_API_KEY)
 
-            val placeJsonArrayList = getPropertiesDeferred.await()
-            val placeArrayList: ArrayList<Place> = parsePlaceJsonStringToPlaceArrayList(placeJsonArrayList, passedRating)
+                val placeJsonArrayList = getPropertiesDeferred.await()
+                val placeArrayList: ArrayList<Place> = parsePlaceJsonStringToPlaceArrayList(placeJsonArrayList, passedRating)
 
-            return placeArrayList
+                return placeArrayList
+            }
+            catch (t: Throwable){
+                val samplePlaceArrayList = ArrayList<Place>()
+
+                val latitude = 0.0
+                val longitude = 0.0
+                val latLng = LatLng(latitude,longitude)
+                val name: String = "Sample"
+                val rating: Double = 0.0
+                val vicinity: String = "dbdbdb"
+
+                val placeSample = Place(latLng, name, rating, vicinity)
+                samplePlaceArrayList.add(placeSample)
+
+                return samplePlaceArrayList
+            }
+
         }
 
         else{
-            var getPropertiesWithPriceDeferred = PlacesApi.retrofitService.getPropertiesOpenNowWithPrice(
-                "$passedLatitude, $passedLongitude",
-                selectedPrice,
-                selectedPrice,
-                distance.toInt(),
-                activityType,
-                "opennow",
-                BuildConfig.GOOGLE_MAPS_API_KEY)
 
-            val placeJsonArrayList = getPropertiesWithPriceDeferred.await()
-            val placeArrayList: ArrayList<Place> = parsePlaceJsonStringToPlaceArrayList(placeJsonArrayList, passedRating)
+            try {
+                var getPropertiesWithPriceDeferred = PlacesApi.retrofitService.getPropertiesOpenNowWithPrice(
+                    "$passedLatitude, $passedLongitude",
+                    selectedPrice,
+                    selectedPrice,
+                    distance.toInt(),
+                    activityType,
+                    "opennow",
+                    BuildConfig.GOOGLE_MAPS_API_KEY)
 
-            return placeArrayList
+                val placeJsonArrayList = getPropertiesWithPriceDeferred.await()
+                val placeArrayList: ArrayList<Place> = parsePlaceJsonStringToPlaceArrayList(placeJsonArrayList, passedRating)
+
+                return placeArrayList
+            }
+            catch (t: Throwable){
+                val samplePlaceArrayList = ArrayList<Place>()
+
+                val latitude = 0.0
+                val longitude = 0.0
+                val latLng = LatLng(latitude,longitude)
+                val name: String = "Sample"
+                val rating: Double = 0.0
+                val vicinity: String = "dbdbdb"
+
+                val placeSample = Place(latLng, name, rating, vicinity)
+                samplePlaceArrayList.add(placeSample)
+
+                return samplePlaceArrayList
+            }
+
         }
 
 

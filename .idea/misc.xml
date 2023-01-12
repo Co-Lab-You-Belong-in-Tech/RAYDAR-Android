@@ -9,6 +9,7 @@
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/drawable/go_button_ripple_effect.xml" value="0.114" />
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/drawable/go_button_ripple_effectdddd.xml" value="0.114" />
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/drawable/home_screen_button_ripple_effect.xml" value="0.1" />
+        <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/drawable/ic_connection_error.xml" value="0.1195" />
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/drawable/ic_icon_home.xml" value="0.1495" />
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/drawable/ic_launcher_background.xml" value="0.114" />
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/drawable/loading_img.xml" value="0.142" />
@@ -17,7 +18,7 @@
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/layout/fragment_activity_type.xml" value="0.22" />
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/layout/fragment_distance.xml" value="0.22" />
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/layout/fragment_main_maps.xml" value="0.21" />
-        <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/layout/fragment_maps.xml" value="0.1921875" />
+        <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/layout/fragment_maps.xml" value="0.22" />
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/layout/fragment_new_distance.xml" value="0.1921875" />
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/layout/fragment_new_maps.xml" value="0.178125" />
         <entry key="..\:/Udacity (General)/Co.Lab/RAYDAR/app/src/main/res/layout/fragment_price.xml" value="0.22" />
